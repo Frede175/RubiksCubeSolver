@@ -40,7 +40,7 @@ uint8_t node::getDepth()
 }
 
 node::~node() {
-	for (std::vector<node>::iterator it = nodes.begin(); it < nodes.end(); it++) {
+	/*for (std::vector<node>::iterator it = nodes.begin(); it < nodes.end(); it++) {
 		delete &it;
-	}
+	}*/
 }

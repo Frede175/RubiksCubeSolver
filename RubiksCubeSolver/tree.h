@@ -15,7 +15,7 @@ public:
 private:
 	node * processNode(node * currentNode);
 	std::queue<node*> stack;
-	std::vector<node*> nodes;
+	std::vector<std::string> cubes;
 };
 
 #endif // !tree_h

@@ -5,6 +5,7 @@
 #include <chrono>
 #include "node.h"
 #include "tree.h"
+#include <stdlib.h> 
 
 
 RubikCube_T cube = { 
@@ -54,9 +55,6 @@ int main()
 	auto begin = std::chrono::steady_clock::now();
 
 	_tree->findSolution(&actions);
-	//RubiksHelper::rotateCube(&cube, RubikRotation_T::LEFT , 3);
-	//RubiksHelper::rotateCube(&cube, RubikRotation_T::LEFT, 1);
-
 
 	auto end = std::chrono::steady_clock::now();
 

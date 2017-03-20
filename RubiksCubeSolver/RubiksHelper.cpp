@@ -274,6 +274,19 @@ namespace RubiksHelper {
 		}
 		return true;
 	}
+
+	std::string convertToNumber(RubikCube_T * cube)
+	{
+		std::string number = "";
+		for (int f = 0; f < 6; f++) {
+			for (int y = 0; y < 3; y++) {
+				for (int x = 0; x < 3; x++) {
+					number += std::to_string(cube->cube[f][y][x]);
+				}
+			}
+		}
+		return number;
+	}
 }
 
 

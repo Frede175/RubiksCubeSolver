@@ -10,12 +10,12 @@
 struct RubikCube_T {
 	uint8_t cube[6][3][3]; //FACE, Y, X
 
-	bool operator ==(const RubikCube_T & c1) const {
+	friend bool operator ==(const RubikCube_T & c1, const RubikCube_T & c2) {
 		std::cout << "Called";
 		for (int f = 0; f < 6; f++) {
 			for (int y = 0; y < 3; y++) {
 				for (int x = 0; x < 3; x++) {
-					if (c1.cube[f][y][x] != cube[f][y][x]) return false;
+					if (c1.cube[f][y][x] != c2.cube[f][y][x]) return false;
 				}
 			}
 		}
@@ -26,18 +26,6 @@ struct RubikCube_T {
 
 } ;
 
-bool operator ==(const RubikCube_T & c1, const RubikCube_T & c2) {
-	std::cout << "Called";
-	for (int f = 0; f < 6; f++) {
-		for (int y = 0; y < 3; y++) {
-			for (int x = 0; x < 3; x++) {
-				if (c1.cube[f][y][x] != c2.cube[f][y][x]) return false;
-			}
-		}
-	}
-
-	return true;
-}
 
 
 static const char * EnumStrings[] = { "FRONT", "BACK", "LEFT", "RIGHT", "TOP", "BOTTOM" };
@@ -82,7 +70,7 @@ typedef struct {
 	uint8_t rotations;
 } RubikAction_T;
 
-static RubikAction_T Actions[27] = {
+static RubikAction_T Actions[18] = {
 	{ RubikRotation_T::LEFT, 1 },
 	{ RubikRotation_T::LEFT, 2 },
 	{ RubikRotation_T::LEFT, 3 },
@@ -100,8 +88,8 @@ static RubikAction_T Actions[27] = {
 	{ RubikRotation_T::UP, 3 },
 	{ RubikRotation_T::DOWN, 1 },
 	{ RubikRotation_T::DOWN, 2 },
-	{ RubikRotation_T::DOWN, 3 },
-	{ RubikRotation_T::MIDDEL, 1 },
+	{ RubikRotation_T::DOWN, 3 }
+	/*{ RubikRotation_T::MIDDEL, 1 },
 	{ RubikRotation_T::MIDDEL, 2 },
 	{ RubikRotation_T::MIDDEL, 3 },
 	{ RubikRotation_T::EQUATOR, 1 },
@@ -109,7 +97,7 @@ static RubikAction_T Actions[27] = {
 	{ RubikRotation_T::EQUATOR, 3 },
 	{ RubikRotation_T::STANDING, 1 },
 	{ RubikRotation_T::STANDING, 2 },
-	{ RubikRotation_T::STANDING, 3 }
+	{ RubikRotation_T::STANDING, 3 }*/
 };
 
 
@@ -120,6 +108,9 @@ namespace RubiksHelper {
 	void rotateFace(RubikCube_T * cube, uint8_t rotations, RubikSide_T side);
 
 	bool isSolved(RubikCube_T * cube);
+
+	std::string convertToNumber(RubikCube_T * cube);
 }
+
 
 #endif
